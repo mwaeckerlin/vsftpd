@@ -1,7 +1,10 @@
 # Docker Image for vsftpd FTP Daemon
 
+    docker run -d --name vsftpd-volume mwaeckerlin/vsftpd sleep infinity
+
     docker run -d --name vsftpd \
       -e IPADDRESS=$(ip route get 212.51.136.253 | awk '{print $NF; exit}') \
+      --volumes-from=vsftpd-volume \
       -p 20:20 \
       -p 21:21 \
       -p 30000:30000 \
